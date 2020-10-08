@@ -118,3 +118,5 @@ config.py
 
 #Idea
 .idea/
+
+*.db
