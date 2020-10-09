@@ -14,7 +14,7 @@
     <div class = 'container'>
     <h1>{{ page_title }}</h1>
      <div class = 'row'>
-        <div class = 'col-8'>
+        <div class = 'col-4'>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <div class="alert alert-warning" role="alert">
@@ -24,20 +24,20 @@
                 </div>
                 {% endif %}
             {% endwith %}
-            <h2> News </h2>
-            {% for news in news_list %}
-            <h3><a href ='{{ news.url }}'>{{ news.title }}</a></h3>
-            <p>{{ news.published.strftime('%d.%m.%Y') }}</p>
-            <hr />
-            {% endfor %}     
+            <form action="{{  url_for('process_login') }}" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.username.label }}
+                    {{ form.username() }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}<br>
+                    {{ form.password() }}
+                </div>
+                {{ form.submit() }}
+            </form>
         </div>
-        <div class = 'col-4'>
-            <h2> Weather Now </h2>
-            {% if weather %}
-                {{weather.temp_C}}, и {{weather.lang_ru.0.value}}
-            {% else %}
-                Sorry, something went wrong :( Try again later
-            {% endif %}
+        <div class = 'col-8'>
         </div>
     </div>
     </div>
